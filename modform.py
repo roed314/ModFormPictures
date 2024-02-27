@@ -164,9 +164,12 @@ class ModularForm:
             #c, d = gamma[1,0], gamma[1,1]
             #scale = (c*z0 + d)**k
             scale = (-c*z + a)**k
-        elif N.is_prime() and z.imag() < self.levelbound:
+        elif N.is_prime() and z.imag() < self.levelbound and self.label != "163.3.b.a":
             z = -1/(N*z)
-            scale = -(N*z)**k
+            if self.label == "37.2.a.a":
+                scale = (N*z)**k
+            else:
+                scale = -(N*z)**k
         for idx, coeff in enumerate(self.qexp):
             if coeff != 0:
                 value += coeff * cmath.exp(2 * cmath.pi * complex(1j) * idx * z)
